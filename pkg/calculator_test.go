@@ -24,21 +24,28 @@ func TestAdd(t *testing.T) {
 		assert.Equal(t, 5.00, calculator.currentValue)
 	})
 
-	t.Run("should return 10 on adding 5 to 5", func(t *testing.T) {
+	t.Run("should return 10.00 on adding 5 to 5", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(5)
 		calculator.Add(5)
 		assert.Equal(t, 10.00, calculator.currentValue)
 	})
 
-	t.Run("should return -5 on adding 5 to -10", func(t *testing.T) {
+	t.Run("should return -5.00 on adding 5 to -10", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(-10)
 		calculator.Add(5)
 		assert.Equal(t, -5.00, calculator.currentValue)
 	})
 
-	t.Run("should return -5 on adding -2 to -3", func(t *testing.T) {
+	t.Run("should return 5.00 on adding -5 to 10", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(10)
+		calculator.Add(-5)
+		assert.Equal(t, 5.00, calculator.currentValue)
+	})
+
+	t.Run("should return -5.00 on adding -2 to -3", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(-3)
 		calculator.Add(-2)
@@ -58,5 +65,40 @@ func TestSubtract(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Subtract(5)
 		assert.Equal(t, -5.00, calculator.currentValue)
+	})
+
+	t.Run("should return 0.00 on subtracting 5 from 5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(5)
+		calculator.Subtract(5)
+		assert.Equal(t, 0.00, calculator.currentValue)
+	})
+
+	t.Run("should return -11.00 on subtracting 5 from -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-6)
+		calculator.Subtract(5)
+		assert.Equal(t, -11.00, calculator.currentValue)
+	})
+
+	t.Run("should return 11.00 on subtracting -5 from 6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(6)
+		calculator.Subtract(-5)
+		assert.Equal(t, 11.00, calculator.currentValue)
+	})
+
+	t.Run("should return -1.00 on subtracting -5 from -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-6)
+		calculator.Subtract(-5)
+		assert.Equal(t, -1.00, calculator.currentValue)
+	})
+
+	t.Run("should return -0.50 on subtracting -5.50 from -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-6)
+		calculator.Subtract(-5.50)
+		assert.Equal(t, -0.50, calculator.currentValue)
 	})
 }
