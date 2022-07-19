@@ -104,52 +104,69 @@ func TestSubtract(t *testing.T) {
 }
 
 func TestMultiply(t *testing.T) {
-	t.Run("should return 0 on multiplying with 0", func(t *testing.T) {
+	t.Run("should return 0 on multiplication with 0", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(5)
 		calculator.Multiply(0)
 		assert.Equal(t, 0.00, calculator.currentValue)
 	})
 
-	t.Run("should return same value on multiplying with 1", func(t *testing.T) {
+	t.Run("should return same value on multiplication with 1", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(8)
 		calculator.Multiply(1)
 		assert.Equal(t, 8.00, calculator.currentValue)
 	})
 
-	t.Run("should return 30.00  on multiplying 5 with 6", func(t *testing.T) {
+	t.Run("should return 30.00  on multiplication of 5 with 6", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(6)
 		calculator.Multiply(5)
 		assert.Equal(t, 30.00, calculator.currentValue)
 	})
 
-	t.Run("should return -30.00  on multiplying -5 with 6", func(t *testing.T) {
+	t.Run("should return -30.00  on multiplication of -5 with 6", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(6)
 		calculator.Multiply(-5)
 		assert.Equal(t, -30.00, calculator.currentValue)
 	})
 
-	t.Run("should return -30.00  on multiplying 5 with -6", func(t *testing.T) {
+	t.Run("should return -30.00  on multiplication of 5 with -6", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(-6)
 		calculator.Multiply(5)
 		assert.Equal(t, -30.00, calculator.currentValue)
 	})
 
-	t.Run("should return 30.00  on multiplying -5 with -6", func(t *testing.T) {
+	t.Run("should return 30.00  on multiplication of -5 with -6", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(-6)
 		calculator.Multiply(-5)
 		assert.Equal(t, 30.00, calculator.currentValue)
 	})
 
-	t.Run("should return 31.50  on multiplying 5.25 with 6", func(t *testing.T) {
+	t.Run("should return 31.50  on multiplication of 5.25 with 6", func(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(6)
 		calculator.Multiply(5.25)
 		assert.Equal(t, 31.50, calculator.currentValue)
+	})
+}
+
+func TestDivide(t *testing.T) {
+	t.Run("should not divide a value by 0", func(t *testing.T) {
+		assert.Panics(t, func() {
+			calculator := NewCalculator()
+			calculator.Add(6)
+			calculator.Divide(0)
+		})
+	})
+
+	t.Run("should return same value on division by 1", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(6)
+		calculator.Divide(1)
+		assert.Equal(t, 6.00, calculator.currentValue)
 	})
 }

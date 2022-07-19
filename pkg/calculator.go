@@ -19,3 +19,10 @@ func (calculator *Calculator) Subtract(value float64) {
 func (calculator *Calculator) Multiply(value float64) {
 	calculator.currentValue *= value
 }
+
+func (calculator *Calculator) Divide(value float64) {
+	if value == 0.00 {
+		panic("we cannot divide number by zero")
+	}
+	calculator.currentValue /= value
+}
