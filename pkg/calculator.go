@@ -15,3 +15,7 @@ func (calculator *Calculator) Add(value float64) {
 func (calculator *Calculator) Subtract(value float64) {
 	calculator.currentValue -= value
 }
+
+func (calculator *Calculator) Multiply(value float64) {
+	calculator.currentValue *= value
+}

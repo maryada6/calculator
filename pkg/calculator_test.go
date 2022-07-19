@@ -102,3 +102,12 @@ func TestSubtract(t *testing.T) {
 		assert.Equal(t, -0.50, calculator.currentValue)
 	})
 }
+
+func TestMultiply(t *testing.T) {
+	t.Run("should return 0 on multiplying with 0", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(5)
+		calculator.Multiply(0)
+		assert.Equal(t, 0.00, calculator.currentValue)
+	})
+}
