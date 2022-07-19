@@ -1,12 +1,10 @@
 package parser
 
 import (
-	"strconv"
 	"strings"
 )
 
-func Parser(inputString string) (string, float64) {
+func Parser(inputString string) []string {
 	split := strings.Split(inputString, " ")
-	value, _ := strconv.ParseFloat(split[1], 64)
-	return split[0], value
+	return split
 }

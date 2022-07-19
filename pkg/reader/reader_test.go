@@ -1,4 +1,4 @@
-package Reader
+package reader
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -14,5 +14,7 @@ func TestReader(t *testing.T) {
 		assert.Equal(t, "subtract 5", Reader(readerTwo))
 		readerThree := strings.NewReader("multiply 4")
 		assert.Equal(t, "multiply 4", Reader(readerThree))
+		readerFour := strings.NewReader("something random")
+		assert.Equal(t, "something random", Reader(readerFour))
 	})
 }
