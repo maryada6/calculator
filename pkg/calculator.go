@@ -4,6 +4,10 @@ type Calculator struct {
 	currentValue float64
 }
 
-func NewCalculator(value float64) Calculator {
-	return Calculator{value}
+func NewCalculator() Calculator {
+	return Calculator{0}
+}
+
+func (calculator *Calculator) Add(value float64) {
+	calculator.currentValue += value
 }
