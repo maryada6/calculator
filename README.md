@@ -18,14 +18,14 @@ After checking out the repo, import `github.com/stretchr/testify` to use `assert
 
 To build this project use the following command:
 
-    $ go build ./...
+    $ make build
 
 
 ## Test instructions
 
 To run the test use the following command:
 
-    $ go test ./...
+    $ make test
 
 ## Library usage
 
