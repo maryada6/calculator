@@ -1,4 +1,4 @@
-package pkg
+package calculator
 
 type Calculator struct {
 	currentValue float64

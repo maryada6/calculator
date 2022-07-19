@@ -20,7 +20,6 @@ To build this project use the following command:
 
     $ make build
 
-
 ## Test instructions
 
 To run the test use the following command:
