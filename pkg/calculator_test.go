@@ -169,4 +169,39 @@ func TestDivide(t *testing.T) {
 		calculator.Divide(1)
 		assert.Equal(t, 6.00, calculator.currentValue)
 	})
+
+	t.Run("should return 5.00  on division of 30 by 6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(30)
+		calculator.Divide(6)
+		assert.Equal(t, 5.00, calculator.currentValue)
+	})
+
+	t.Run("should return -5.00  on division of 30 by -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(30)
+		calculator.Divide(-6)
+		assert.Equal(t, -5.00, calculator.currentValue)
+	})
+
+	t.Run("should return -5.00  on division of -30 by 6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-30)
+		calculator.Divide(6)
+		assert.Equal(t, -5.00, calculator.currentValue)
+	})
+
+	t.Run("should return 5.00  on division of -30 by -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-30)
+		calculator.Divide(-6)
+		assert.Equal(t, 5.00, calculator.currentValue)
+	})
+
+	t.Run("should return 5.15 on division of 25.75 by 5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(25.75)
+		calculator.Divide(5)
+		assert.Equal(t, 5.15, calculator.currentValue)
+	})
 }
