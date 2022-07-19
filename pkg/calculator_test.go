@@ -110,4 +110,46 @@ func TestMultiply(t *testing.T) {
 		calculator.Multiply(0)
 		assert.Equal(t, 0.00, calculator.currentValue)
 	})
+
+	t.Run("should return same value on multiplying with 1", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(8)
+		calculator.Multiply(1)
+		assert.Equal(t, 8.00, calculator.currentValue)
+	})
+
+	t.Run("should return 30.00  on multiplying 5 with 6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(6)
+		calculator.Multiply(5)
+		assert.Equal(t, 30.00, calculator.currentValue)
+	})
+
+	t.Run("should return -30.00  on multiplying -5 with 6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(6)
+		calculator.Multiply(-5)
+		assert.Equal(t, -30.00, calculator.currentValue)
+	})
+
+	t.Run("should return -30.00  on multiplying 5 with -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-6)
+		calculator.Multiply(5)
+		assert.Equal(t, -30.00, calculator.currentValue)
+	})
+
+	t.Run("should return 30.00  on multiplying -5 with -6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-6)
+		calculator.Multiply(-5)
+		assert.Equal(t, 30.00, calculator.currentValue)
+	})
+
+	t.Run("should return 31.50  on multiplying 5.25 with 6", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(6)
+		calculator.Multiply(5.25)
+		assert.Equal(t, 31.50, calculator.currentValue)
+	})
 }
