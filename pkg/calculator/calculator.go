@@ -1,6 +1,9 @@
 package calculator
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 type Icalculator interface {
 	Add(value float64)
@@ -9,8 +12,8 @@ type Icalculator interface {
 	Divide(value float64)
 	GetCurrentValue() float64
 	SetCurrentValue(value float64)
-	Cancel(value float64)
-	Exit(value float64)
+	Cancel()
+	Exit()
 }
 
 type Calculator struct {
@@ -42,16 +45,21 @@ func (calculator *Calculator) Multiply(value float64) {
 }
 
 func (calculator *Calculator) Divide(value float64) {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("we cannot divide number by zero")
+		}
+	}()
 	if value == 0.00 {
 		panic("we cannot divide number by zero")
 	}
 	calculator.currentValue /= value
 }
 
-func (calculator *Calculator) Cancel(value float64) {
-	calculator.currentValue = value
+func (calculator *Calculator) Cancel() {
+	calculator.currentValue = 0.0
 }
 
-func (calculator *Calculator) Exit(value float64) {
-	os.Exit(5)
+func (calculator *Calculator) Exit() {
+	os.Exit(0)
 }

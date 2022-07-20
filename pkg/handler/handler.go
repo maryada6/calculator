@@ -1,28 +1,62 @@
 package handler
 
+import (
+	"calculator/pkg/calculator"
+	"calculator/pkg/view"
+)
+
 type Operation string
 
 const add Operation = "add"
 
-type HandleFunction func(float642 float64)
+type HandleFunction func(float642 float64, icalculator calculator.Icalculator)
 type HandleMap map[Operation]HandleFunction
 
 var hf = HandleMap{}
 
+func AdditionHandler(value float64, icalculator calculator.Icalculator) {
+	icalculator.Add(value)
+	view.View(icalculator.GetCurrentValue())
+}
+
+func SubtractionHandler(value float64, icalculator calculator.Icalculator) {
+	icalculator.Subtract(value)
+	view.View(icalculator.GetCurrentValue())
+}
+
+func MultiplicationHandler(value float64, icalculator calculator.Icalculator) {
+	icalculator.Multiply(value)
+	view.View(icalculator.GetCurrentValue())
+}
+
+func DivisionHandler(value float64, icalculator calculator.Icalculator) {
+	icalculator.Divide(value)
+	if value != 0 {
+		view.View(icalculator.GetCurrentValue())
+	}
+}
+
+func CancelHandler(value float64, icalculator calculator.Icalculator) {
+	icalculator.Cancel()
+}
+
+func ExitHandler(value float64, icalculator calculator.Icalculator) {
+	icalculator.Exit()
+}
+
+func InitHandler(newCalculator calculator.Icalculator) {
+	RegisterHandler("add", AdditionHandler)
+	RegisterHandler("subtract", SubtractionHandler)
+	RegisterHandler("divide", DivisionHandler)
+	RegisterHandler("multiply", MultiplicationHandler)
+	RegisterHandler("cancel", CancelHandler)
+	RegisterHandler("exit", ExitHandler)
+}
+
 func RegisterHandler(operator Operation, function HandleFunction) {
 	hf[operator] = function
 }
-func ExecuteHandler(operation Operation, value float64) {
-	hf[operation](value)
-}
 
-//func Handler(operation string, value float64, icalculator calculator.Icalculator) {
-//	mapFunction := map[string]func(float642 float64){
-//		"add":      icalculator.Add,
-//		"subtract": icalculator.Subtract,
-//		"multiply": icalculator.Multiply,
-//		"divide":   icalculator.Divide,
-//	}
-//	mapFunction[operation](value)
-//	fmt.Println(icalculator.GetCurrentValue())
-//}
+func ExecuteHandler(operation Operation, value float64, icalculator calculator.Icalculator) {
+	hf[operation](value, icalculator)
+}

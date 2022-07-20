@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -45,6 +46,7 @@ func ParseInput(inputString string) (string, float64) {
 		return tokens[0], value
 	} else {
 		fmt.Println("Invalid input")
+		os.Exit(0)
 	}
 	return "", 0.00
 }
