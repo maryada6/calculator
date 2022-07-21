@@ -1,49 +1,39 @@
 package parser
 
 import (
-	"calculator/pkg/view"
+	"calculator/pkg/handler"
 	"strconv"
 	"strings"
 )
 
-var commandList = []string{"add", "subtract", "multiply", "divide", "cancel", "exit"}
+type Parser struct {
+	Operation handler.Operation
+	Value     float64
+}
 
-func Parser(inputString string) []string {
+func NewParser(operation handler.Operation, float642 float64) Parser {
+	return Parser{operation, float642}
+}
+
+func Split(inputString string) []string {
 	split := strings.Split(inputString, " ")
 	return split
 }
 
-func stringInList(operation string, list []string) bool {
-	for _, item := range list {
-		if item == operation {
-			return true
-		}
-	}
-	return false
-}
-
 func Validator(tokens []string) bool {
-	if len(tokens) > 2 {
-		return false
-	}
-	if len(tokens) == 1 {
-		operation := tokens[0]
-		return operation == "exit" || operation == "cancel"
-	}
-	operation, value := tokens[0], tokens[1]
-	_, err := strconv.ParseFloat(value, 64)
-	return stringInList(operation, commandList) && err == nil
+	return len(tokens) <= 2
 }
 
-func ParseInput(inputString string) (string, float64) {
-	tokens := Parser(inputString)
+func ParseInput(inputString string) Parser {
+	tokens := Split(inputString)
 	if Validator(tokens) {
 		if len(tokens) == 1 {
-			return tokens[0], 0.00
+			return NewParser(handler.Operation(tokens[0]), 0.00)
 		}
-		value, _ := strconv.ParseFloat(tokens[1], 64)
-		return tokens[0], value
+		value, err := strconv.ParseFloat(tokens[1], 64)
+		if err != nil {
+			return NewParser(handler.Operation(tokens[0]), value)
+		}
 	}
-	view.InvalidInput("Invalid input")
-	return "", 0.00
+	return NewParser(handler.Operation(""), 0.00)
 }

@@ -13,7 +13,7 @@ func main() {
 	var newCalculator = calculator.NewCalculator()
 	for true {
 		view.InitialSign()
-		operation, value := parser.ParseInput(reader.Reader(os.Stdin))
-		handler.ExecuteHandler(handler.Operation(operation), value, newCalculator)
+		parseInput := parser.ParseInput(reader.Reader(os.Stdin))
+		handler.ExecuteHandler(parseInput.Operation, parseInput.Value, newCalculator)
 	}
 }

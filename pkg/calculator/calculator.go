@@ -21,15 +21,10 @@ type Icalculator interface {
 	Arithmetic
 	Utility
 	GetCurrentValue() float64
-	SetCurrentValue(value float64)
 }
 
 type Calculator struct {
 	currentValue float64
-}
-
-func (calculator *Calculator) SetCurrentValue(value float64) {
-	calculator.currentValue = value
 }
 
 func (calculator *Calculator) GetCurrentValue() float64 {

@@ -49,6 +49,10 @@ func ExitHandler(value float64, icalculator calculator.Icalculator) {
 	icalculator.Exit()
 }
 
+func NoHandler(value float64, icalculator calculator.Icalculator) {
+	view.InvalidInput("Invalid input")
+}
+
 func init() {
 	hf.RegisterHandler(add, AdditionHandler)
 	hf.RegisterHandler(subtract, SubtractionHandler)
@@ -63,7 +67,10 @@ func (hf HandleMap) RegisterHandler(operator Operation, function HandleFunction)
 }
 
 func ExecuteHandler(operation Operation, value float64, icalculator calculator.Icalculator) {
-	if operation != "" {
+	_, isPresent := hf[operation]
+	if isPresent {
 		hf[operation](value, icalculator)
+		return
 	}
+	NoHandler(0.0, icalculator)
 }

@@ -222,11 +222,3 @@ func TestCalculator_GetCurrentValue(t *testing.T) {
 		assert.Equal(t, 5.00, calculator.GetCurrentValue())
 	})
 }
-
-func TestCalculator_SetCurrentValue(t *testing.T) {
-	t.Run("should set current value to 5", func(t *testing.T) {
-		calculator := NewCalculator()
-		calculator.SetCurrentValue(5)
-		assert.Equal(t, 5.00, calculator.GetCurrentValue())
-	})
-}
