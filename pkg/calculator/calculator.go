@@ -5,15 +5,23 @@ import (
 	"os"
 )
 
-type Icalculator interface {
+type Arithmetic interface {
 	Add(value float64)
 	Subtract(value float64)
 	Multiply(value float64)
 	Divide(value float64)
-	GetCurrentValue() float64
-	SetCurrentValue(value float64)
+}
+
+type Utility interface {
 	Cancel()
 	Exit()
+}
+
+type Icalculator interface {
+	Arithmetic
+	Utility
+	GetCurrentValue() float64
+	SetCurrentValue(value float64)
 }
 
 type Calculator struct {
@@ -47,7 +55,7 @@ func (calculator *Calculator) Multiply(value float64) {
 func (calculator *Calculator) Divide(value float64) {
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Println("we cannot divide number by zero")
+			fmt.Println(err)
 		}
 	}()
 	if value == 0.00 {

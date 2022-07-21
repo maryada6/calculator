@@ -53,4 +53,29 @@ func TestValidator(t *testing.T) {
 		tokens := []string{"added", "5"}
 		assert.Equal(t, false, Validator(tokens))
 	})
+
+	t.Run("should return false for invalid tokens", func(t *testing.T) {
+		tokens := []string{"it", "with", "5"}
+		assert.Equal(t, false, Validator(tokens))
+	})
+}
+
+func TestParseInput(t *testing.T) {
+	t.Run("should return add and 5 for add 5", func(t *testing.T) {
+		operation, value := ParseInput("add 5")
+		assert.Equal(t, "add", operation)
+		assert.Equal(t, 5.0, value)
+	})
+
+	t.Run("should return cancel and 0 for cancel", func(t *testing.T) {
+		operation, value := ParseInput("cancel")
+		assert.Equal(t, "cancel", operation)
+		assert.Equal(t, 0.0, value)
+	})
+
+	t.Run("should return subtract and 0 for subtract", func(t *testing.T) {
+		operation, value := ParseInput("cancel")
+		assert.Equal(t, "cancel", operation)
+		assert.Equal(t, 0.0, value)
+	})
 }

@@ -11,9 +11,8 @@ import (
 
 func main() {
 	var newCalculator = calculator.NewCalculator()
-	handler.InitHandler(newCalculator)
 	for true {
-		view.ViewInitalSign()
+		view.InitialSign()
 		operation, value := parser.ParseInput(reader.Reader(os.Stdin))
 		handler.ExecuteHandler(handler.Operation(operation), value, newCalculator)
 	}

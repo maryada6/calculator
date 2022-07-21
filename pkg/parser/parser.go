@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"fmt"
+	"calculator/pkg/view"
 	"os"
 	"strconv"
 	"strings"
@@ -45,7 +45,7 @@ func ParseInput(inputString string) (string, float64) {
 		value, _ := strconv.ParseFloat(tokens[1], 64)
 		return tokens[0], value
 	} else {
-		fmt.Println("Invalid input")
+		view.InvalidInput("Invalid input")
 		os.Exit(0)
 	}
 	return "", 0.00
