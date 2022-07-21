@@ -58,3 +58,17 @@ func TestRegisterHandler(t *testing.T) {
 		assert.Equal(t, 1, len(handleMap))
 	})
 }
+
+func TestExecuteHandler(t *testing.T) {
+	t.Run("should execute addition of 5", func(t *testing.T) {
+		calc := calculator.NewCalculator()
+		ExecuteHandler(Operation("add"), 5.0, calc)
+		assert.Equal(t, 5.0, calc.GetCurrentValue())
+	})
+
+	t.Run("should execute cancel", func(t *testing.T) {
+		calc := calculator.NewCalculator()
+		ExecuteHandler(Operation("cancel"), 0.0, calc)
+		assert.Equal(t, 0.0, calc.GetCurrentValue())
+	})
+}
