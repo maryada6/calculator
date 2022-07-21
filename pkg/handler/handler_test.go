@@ -48,3 +48,13 @@ func TestCancelHandler(t *testing.T) {
 		assert.Equal(t, 0.0, calc.GetCurrentValue())
 	})
 }
+
+func TestRegisterHandler(t *testing.T) {
+	t.Run("should add add operation to the map", func(t *testing.T) {
+		handleMap := HandleMap{}
+		assert.Equal(t, 0, len(handleMap))
+		operation := Operation("add")
+		handleMap.RegisterHandler(operation, AdditionHandler)
+		assert.Equal(t, 1, len(handleMap))
+	})
+}

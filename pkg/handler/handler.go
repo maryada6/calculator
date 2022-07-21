@@ -50,18 +50,20 @@ func ExitHandler(value float64, icalculator calculator.Icalculator) {
 }
 
 func init() {
-	RegisterHandler(add, AdditionHandler)
-	RegisterHandler(subtract, SubtractionHandler)
-	RegisterHandler(divide, DivisionHandler)
-	RegisterHandler(multiply, MultiplicationHandler)
-	RegisterHandler(cancel, CancelHandler)
-	RegisterHandler(exit, ExitHandler)
+	hf.RegisterHandler(add, AdditionHandler)
+	hf.RegisterHandler(subtract, SubtractionHandler)
+	hf.RegisterHandler(divide, DivisionHandler)
+	hf.RegisterHandler(multiply, MultiplicationHandler)
+	hf.RegisterHandler(cancel, CancelHandler)
+	hf.RegisterHandler(exit, ExitHandler)
 }
 
-func RegisterHandler(operator Operation, function HandleFunction) {
+func (hf HandleMap) RegisterHandler(operator Operation, function HandleFunction) {
 	hf[operator] = function
 }
 
 func ExecuteHandler(operation Operation, value float64, icalculator calculator.Icalculator) {
-	hf[operation](value, icalculator)
+	if operation != "" {
+		hf[operation](value, icalculator)
+	}
 }

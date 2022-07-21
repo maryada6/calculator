@@ -1,7 +1,7 @@
 package calculator
 
 import (
-	"fmt"
+	"calculator/pkg/view"
 	"os"
 )
 
@@ -53,15 +53,12 @@ func (calculator *Calculator) Multiply(value float64) {
 }
 
 func (calculator *Calculator) Divide(value float64) {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println(err)
-		}
-	}()
 	if value == 0.00 {
-		panic("we cannot divide number by zero")
+		view.InvalidInput("we cannot divide number by zero")
+	} else {
+		calculator.currentValue /= value
+
 	}
-	calculator.currentValue /= value
 }
 
 func (calculator *Calculator) Cancel() {

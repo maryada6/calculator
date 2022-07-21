@@ -13,7 +13,7 @@ func TestNewCalculator(t *testing.T) {
 	})
 
 	t.Run("Should return calculator entity", func(t *testing.T) {
-		assert.IsType(t, Calculator{}, NewCalculator())
+		assert.IsType(t, &Calculator{}, NewCalculator())
 	})
 }
 
@@ -156,7 +156,7 @@ func TestMultiply(t *testing.T) {
 
 func TestDivide(t *testing.T) {
 	t.Run("should not divide a value by 0", func(t *testing.T) {
-		assert.Panics(t, func() {
+		assert.NotPanics(t, func() {
 			calculator := NewCalculator()
 			calculator.Add(6)
 			calculator.Divide(0)
@@ -203,5 +203,30 @@ func TestDivide(t *testing.T) {
 		calculator.Add(25.75)
 		calculator.Divide(5)
 		assert.Equal(t, 5.15, calculator.currentValue)
+	})
+}
+
+func TestCalculator_Cancel(t *testing.T) {
+	t.Run("should change current value to 0", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(25.75)
+		calculator.Cancel()
+		assert.Equal(t, 0.00, calculator.currentValue)
+	})
+}
+
+func TestCalculator_GetCurrentValue(t *testing.T) {
+	t.Run("should return current value", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(5)
+		assert.Equal(t, 5.00, calculator.GetCurrentValue())
+	})
+}
+
+func TestCalculator_SetCurrentValue(t *testing.T) {
+	t.Run("should set current value to 5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.SetCurrentValue(5)
+		assert.Equal(t, 5.00, calculator.GetCurrentValue())
 	})
 }

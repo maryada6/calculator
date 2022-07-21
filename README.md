@@ -26,6 +26,34 @@ To run the test use the following command:
 
     $ make test
 
-## Library usage
+## Run instructions
 
-Todo: Library usage to be added
+To run the application:
+    
+    $ make run
+
+## Command line interface usage
+
+To add a number type this in terminal:
+
+    add number
+
+To subtract a number type this in terminal:
+
+    subtract number
+
+To divide a number type this in terminal:
+
+    divide number
+
+To multiply a number type this in terminal:
+
+    multiply number
+
+To cancel type this in terminal:
+
+    cancel
+
+To exit type this in terminal:
+
+    exit

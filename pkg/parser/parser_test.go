@@ -78,4 +78,10 @@ func TestParseInput(t *testing.T) {
 		assert.Equal(t, "cancel", operation)
 		assert.Equal(t, 0.0, value)
 	})
+
+	t.Run("should return error for invalid input", func(t *testing.T) {
+		assert.NotPanics(t, func() {
+			ParseInput("this is rando string")
+		})
+	})
 }
