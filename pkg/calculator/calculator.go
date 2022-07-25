@@ -21,6 +21,7 @@ type Icalculator interface {
 	Arithmetic
 	Utility
 	GetCurrentValue() float64
+	SaveInput(operation string, float642 float64)
 }
 
 type Calculator struct {

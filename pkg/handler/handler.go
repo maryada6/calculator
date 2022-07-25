@@ -7,13 +7,6 @@ import (
 
 type Operation string
 
-const add Operation = "add"
-const subtract Operation = "subtract"
-const multiply Operation = "multiply"
-const divide Operation = "divide"
-const cancel Operation = "cancel"
-const exit Operation = "exit"
-
 type HandleFunction func(float642 float64, icalculator calculator.Icalculator)
 type HandleMap map[Operation]HandleFunction
 
