@@ -222,3 +222,25 @@ func TestCalculator_GetCurrentValue(t *testing.T) {
 		assert.Equal(t, 5.00, calculator.GetCurrentValue())
 	})
 }
+
+func TestSaveInput(t *testing.T) {
+	t.Run("should append the input", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.SaveInput("add", 5)
+		calculator.SaveInput("subtract", 5)
+		assert.Equal(t, 2, len(calculator.history))
+	})
+}
+
+func TestGetHistory(t *testing.T) {
+	t.Run("should return current history", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.SaveInput("add", 5)
+		assert.Equal(t, input{"add", 5}, calculator.GetHistory()[0])
+		calculatorTwo := NewCalculator()
+		calculatorTwo.SaveInput("subtract", 5)
+		calculatorTwo.SaveInput("multiply", 7)
+		assert.Equal(t, input{"subtract", 5}, calculatorTwo.GetHistory()[0])
+		assert.Equal(t, input{"multiply", 7}, calculatorTwo.GetHistory()[1])
+	})
+}

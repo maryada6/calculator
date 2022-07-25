@@ -63,6 +63,7 @@ func ExecuteHandler(operation Operation, value float64, icalculator calculator.I
 	_, isPresent := hf[operation]
 	if isPresent {
 		hf[operation](value, icalculator)
+		icalculator.SaveInput(string(operation), value)
 		return
 	}
 	NoHandler(0.0, icalculator)

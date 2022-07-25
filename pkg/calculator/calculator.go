@@ -24,16 +24,27 @@ type Icalculator interface {
 	SaveInput(operation string, float642 float64)
 }
 
+type input struct {
+	operation string
+	value     float64
+}
+
 type Calculator struct {
 	currentValue float64
+	history      []input
 }
 
 func (calculator *Calculator) GetCurrentValue() float64 {
 	return calculator.currentValue
 }
 
+func (calculator *Calculator) GetHistory() []input {
+	return calculator.history
+}
+
 func NewCalculator() *Calculator {
-	return &Calculator{0}
+	var inputs []input
+	return &Calculator{0, inputs}
 }
 
 func (calculator *Calculator) Add(value float64) {
@@ -63,4 +74,8 @@ func (calculator *Calculator) Cancel() {
 
 func (calculator *Calculator) Exit() {
 	os.Exit(0)
+}
+
+func (calculator *Calculator) SaveInput(operation string, value float64) {
+	calculator.history = append(calculator.history, input{operation, value})
 }
